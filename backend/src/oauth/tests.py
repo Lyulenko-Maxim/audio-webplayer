@@ -3,6 +3,8 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient, APITestCase
 
+from src.users.models import Listener
+
 User = get_user_model()
 
 
@@ -10,10 +12,14 @@ class AuthenticationTest(APITestCase):
     def setUp(self) -> None:
         self.client = APIClient()
         self.register_data = {
+            "role": "listener",
             "username": "admin",
             "password": "admin",
             "email": "email@email.com",
-            "date_of_birth": "2002-08-03"
+            "date_of_birth": "2002-08-03",
+            "is_staff": True,
+            "is_superuser": True,
+
         }
         self.login_data = {
             "username": "admin",
@@ -27,7 +33,6 @@ class AuthenticationTest(APITestCase):
             path = self.register_url,
             data = self.register_data,
         )
-
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(User.objects.count(), 1)
 

@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.db import models
 from django.utils import timezone
 
-from users.managers import UserManager
+from src.users.managers import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -35,7 +35,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
 
     class Meta:
         verbose_name = 'Пользователь'
