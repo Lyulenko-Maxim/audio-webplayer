@@ -6,7 +6,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from oauth.permissions import IsAnonymous
+from src.oauth.permissions import IsAnonymous
 from src.oauth.services import JWTService
 from src.oauth.serializers import ArtistSerializer, ListenerSerializer, UserSerializer
 
