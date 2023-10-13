@@ -25,12 +25,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+]
+
+INSTALLED_APPS += [
     'rest_framework',
     'corsheaders',
     'drf_yasg',
+]
 
+INSTALLED_APPS += [
     'src.users',
-    'src.oauth'
+    'src.oauth',
+    'src.music',
 ]
 
 MIDDLEWARE = [
@@ -38,7 +44,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 
-    'src.oauth.middlewares.TokenRefreshMiddleware',
+    'src.oauth.middlewares.JWTTokenRefreshMiddleware',
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -70,9 +76,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Minsk'
 
 USE_I18N = True
 

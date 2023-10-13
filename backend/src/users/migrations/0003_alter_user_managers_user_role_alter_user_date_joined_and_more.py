@@ -4,7 +4,6 @@ from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
 import django.utils.timezone
-import src.users.managers
 
 
 class Migration(migrations.Migration):
@@ -14,12 +13,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterModelManagers(
-            name='user',
-            managers=[
-                ('objects', src.users.managers.UserManager()),
-            ],
-        ),
         migrations.AddField(
             model_name='user',
             name='role',

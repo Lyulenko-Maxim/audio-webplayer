@@ -30,8 +30,8 @@ class AuthenticationTest(APITestCase):
 
     def test_01_user_registration(self):
         response = self.client.post(
-            path = self.register_url,
-            data = self.register_data,
+            path=self.register_url,
+            data=self.register_data,
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(User.objects.count(), 1)
@@ -41,8 +41,8 @@ class AuthenticationTest(APITestCase):
         user.save()
 
         response = self.client.post(
-            path = self.login_url,
-            data = self.login_data,
+            path=self.login_url,
+            data=self.login_data,
         )
 
         cookies = response.cookies

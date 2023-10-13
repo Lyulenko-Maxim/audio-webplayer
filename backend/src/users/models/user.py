@@ -1,16 +1,13 @@
 from django.contrib.auth.base_user import AbstractBaseUser
-from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth.models import PermissionsMixin, UserManager
+from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.core.mail import send_mail
 from django.db import models
 from django.utils import timezone
 
-from src.users.managers import UserManager
-
 
 class User(AbstractBaseUser, PermissionsMixin):
     """Модель пользователя."""
-
-    objects = UserManager()
 
     GENDER_CHOICES = (
         ('M', 'Мужчина'),
@@ -19,27 +16,30 @@ class User(AbstractBaseUser, PermissionsMixin):
         ('N', 'Не хочу отвечать'),
     )
 
-    ROLE_CHOICES = (
-        ('listener', 'Слушатель'),
-        ('artist', 'Исполнитель'),
-    )
+    username_validator = UnicodeUsernameValidator()
 
-    role = models.CharField(max_length = 10, choices = ROLE_CHOICES, default = 'listener', verbose_name = 'Роль')
-    username = models.CharField(max_length = 32, unique = True, verbose_name = 'Имя пользователя')
-    password = models.CharField(max_length = 128, verbose_name = 'Пароль')
-    email = models.EmailField(unique = True, verbose_name = 'Электронная почта')
-    gender = models.CharField(max_length = 1, choices = GENDER_CHOICES, default = 'N', verbose_name = 'Гендер')
-    date_of_birth = models.DateField(verbose_name = 'Дата рождения')
-    receive_promotions = models.BooleanField(default = False, verbose_name = 'Получать рекламу')
-    date_joined = models.DateTimeField(default = timezone.now, verbose_name = 'Дата регистрации')
-    is_staff = models.BooleanField(default = False, verbose_name = 'Администратор')
+    username = models.CharField(
+        max_length=32,
+        unique=True,
+        validators=[username_validator],
+        verbose_name='имя пользователя'
+    )
+    password = models.CharField(max_length=128, verbose_name='пароль')
+    email = models.EmailField(unique=True, verbose_name='электронная почта')
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='N', verbose_name='гендер')
+    date_of_birth = models.DateField(verbose_name='дата рождения')
+    receive_promotions = models.BooleanField(default=False, verbose_name='получать рекламу')
+    date_joined = models.DateTimeField(default=timezone.now, verbose_name='дата регистрации')
+    is_staff = models.BooleanField(default=False, verbose_name='администратор')
 
     USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'email'
 
+    objects = UserManager()
+
     class Meta:
-        verbose_name = 'Пользователь'
-        verbose_name_plural = 'Пользователи'
+        verbose_name = 'пользователь'
+        verbose_name_plural = 'пользователи'
 
     def __str__(self):
         return self.username
@@ -48,5 +48,5 @@ class User(AbstractBaseUser, PermissionsMixin):
         super().clean()
         self.email = self.__class__.objects.normalize_email(self.email)
 
-    def email_user(self, subject, message, from_email = None, **kwargs):
+    def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)

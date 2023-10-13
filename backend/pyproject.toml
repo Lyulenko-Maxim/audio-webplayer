@@ -16,8 +16,9 @@ requests = "^2.31.0"
 pillow = "^10.0.0"
 pyjwt = "^2.8.0"
 django-cors-headers = "^4.2.0"
-factory-boy = "^3.3.0"
 
+[tool.poetry.group.dev.dependencies]
+factory-boy = "^3.3.0"
 
 [build-system]
 requires = ["poetry-core"]

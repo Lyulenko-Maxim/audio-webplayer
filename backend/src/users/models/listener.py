@@ -7,14 +7,15 @@ class Listener(models.Model):
     """Модель слушателя"""
 
     user = models.OneToOneField(
-        to = User,
-        on_delete = models.CASCADE,
-        verbose_name = 'Пользователь'
+        to=User,
+        on_delete=models.CASCADE,
+        related_name='listener',
+        verbose_name='пользователь'
     )
 
     class Meta:
-        verbose_name = 'Слушатель'
-        verbose_name_plural = 'Слушатели'
+        verbose_name = 'слушатель'
+        verbose_name_plural = 'слушатели'
 
     def __str__(self):
         return self.user.username

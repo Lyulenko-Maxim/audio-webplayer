@@ -1,0 +1,3 @@
+from .create_single_view import CreateSingleView
+from .create_album_view import CreateAlbumView
+from .add_track_to_album_view import AddTrackToAlbumView
