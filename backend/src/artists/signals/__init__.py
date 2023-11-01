@@ -1,0 +1,1 @@
+from .create_user_artist import create_user_artist

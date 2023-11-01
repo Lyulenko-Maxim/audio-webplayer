@@ -24,19 +24,29 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
 ]
 
 INSTALLED_APPS += [
     'rest_framework',
     'corsheaders',
     'drf_yasg',
+    'polymorphic',
+    'django_filters',
+    'django_countries',
+    'django_extensions',
 ]
 
 INSTALLED_APPS += [
     'src.users',
-    'src.oauth',
-    'src.music',
+    'src.artists',
+    'src.authentication',
+    'src.albums',
+    'src.tracks',
+    'src.playlists',
+    'src.genres',
+    'src.statement',
+    'src.metadata',
+    'src.search',
 ]
 
 MIDDLEWARE = [
@@ -44,7 +54,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 
-    'src.oauth.middlewares.JWTTokenRefreshMiddleware',
+    'src.authentication.middlewares.JWTTokenRefreshMiddleware',
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -99,3 +109,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
+SESSION_COOKIE_SAMESITE = None
+
+CORS_ALLOW_HEADERS = ['Content-Type', 'Authorization']  # Подключите необходимые заголовки
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]

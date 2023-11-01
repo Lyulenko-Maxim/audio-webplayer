@@ -1,0 +1,2 @@
+from .user_profile_view import UserProfileView
+from .user_profile_read_only_view import UserProfileReadOnlyView

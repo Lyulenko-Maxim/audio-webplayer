@@ -18,6 +18,5 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = 'users.User'
 
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-]
+JWT_ACCESS_TOKEN_EXP_MINUTES = 5
+JWT_REFRESH_TOKEN_EXP_DAYS = 7
