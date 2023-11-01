@@ -1,0 +1,2 @@
+from .artist_serializer import ArtistSerializer
+from .artist_read_only_serializer import ArtistReadOnlySerializer

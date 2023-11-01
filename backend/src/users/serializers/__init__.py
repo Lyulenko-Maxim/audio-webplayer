@@ -1,3 +1,4 @@
+from .user_profile_serializer import UserProfileSerializer
+from .user_profile_read_only_serializer import UserProfileReadOnlySerializer
 from .user_serializer import UserSerializer
-from .listener_serializer import ListenerSerializer
-from .artist_serializer import ArtistSerializer
+from .change_password_serializer import ChangePasswordSerializer
