@@ -5,8 +5,6 @@
 Before you start, ensure you have the following installed:
 
 - Python (3.11+)
-- Node.js
-- npm or yarn
 - Poetry (Python package manager)
 
 ## Getting Started
@@ -14,9 +12,11 @@ Before you start, ensure you have the following installed:
 1. Clone the repository:
    ```bash
    git clone https://github.com/Lyulenko-Maxim/audio-webplayer.git
+   
 2. Change to the project directory:
    ```bash
-   cd audio-webplayer
+   cd audio-webplayer/backend
+   
 3. Install Poetry package manager:
    ```bash
     pip install poetry
@@ -28,6 +28,7 @@ Before you start, ensure you have the following installed:
 5. Set up the database
    ```bash
     python manage.py migrate
+   
 6. Run the backend server
    ```bash
     python manage.py runserver
